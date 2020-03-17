@@ -1,0 +1,78 @@
+#board completed from automate the boring stuff with python
+
+"""met a pretty nice book called automate the boring stuff by so far to me has been the best book for beginners , its light weight
+and it comes with a 'do it yourself' tutorial and one of them happens to be a tic-tac toe which i've completed my self  """
+
+board= {1:' ', 2:' ', 3:' ', 4:' ', 5:' ', 6:' ', 7:' ', 8:' ', 9:' '}#it uses a dictionary to hold all values(either X or O) so we can use keys #to assign user input to the game
+
+
+
+
+def printboard(board):#A function which calls an empty board which will update as we continue with the game 
+	print(f"{board[1]}|{board[2]}|{board[3]}")
+	print('-+-+-')
+	print(f"{board[4]}|{board[5]}|{board[6]}")
+	print('-+-+-')
+	print(f"{board[7]}|{board[8]}|{board[9]}")
+
+turn = "X" #initialising our first/initial player which will be X totally depends on you 
+moves_played=0#it counts our moves being played so we can make descisions regarding the number of moves
+
+for i in range(9):#looping through nine times as we have 9 spaces in the board
+
+
+	printboard(board)#shows the empty board at first
+	print("turn for " + turn +" to play")
+
+	move=int(input("enter move..: "))#takes user input in int data type as our keys are specified as int type
+
+
+	if board[move]==" ":#check if the space is empty as to escape overwritting
+		board[move]=turn#assigns the dict values to the either X or O depending on users
+		moves_played+=1#counts the moves_played
+	else:
+		print("the spot is filled\n")
+		continue
+
+	if moves_played >= 5: #logically to win a game takes 5 times for both player moves so to save time we give a consttraint to 5 moves
+		if board[7]==board[8]==board[9]:#simply checking for a match to know who wins
+			print(printboard(board)) #calls the updated dict
+			print(f"Game over...{turn} won  ")
+			break #breaks the condition/ breaks the game once we have a winner
+		elif board[1]==board[5]==board[9]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[3]==board[5]==board[7]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[1]==board[2]==board[3]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[4]==board[5]==board[6]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[1]==board[4]==board[7]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[2]==board[5]==board[8]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+		elif board[3]==board[6]==board[9]:
+			print(printboard(board))
+			print(f"Game over...{turn} won  ")
+			break
+	if moves_played==9: #if we have exhausted our moves with no winners we assume both players have lost
+		print("Game over")
+
+	if turn=="X": #we initially made our first player to be X and we are in a loop of 9 trials and hence for our next player to play we will want to check if its the X player or O player to change players
+		turn="O" #changing to O if our prev player was X
+	else:
+		turn="X" #else player X becomes our player if our initial becomes O
+
+
